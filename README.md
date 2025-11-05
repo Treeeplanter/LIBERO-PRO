@@ -156,7 +156,38 @@ pip install -e .
 
 # LIBERO-Pro Evaluation
 
-To specify single-type or combined-type generalization evaluation, modify `evaluation_config.yaml` in your project directory.  
+## ⚡️ Quick Start
+Follow the steps below to quickly set up and run **LIBERO-Pro** for your own evaluations.
+
+💡 **Note:**  
+To enable stable and fast parallel evaluation, we updated `libero/libero/benchmark/__init__.py` and `libero/libero/benchmark/libero_suite_task_map.py`. If you cloned the repo **before 2025/11/05**, please re-download and replace these two files.
+
+### 1️⃣ Download Required Files
+First, download all `bddl_files` and `init_files` from our official Huggingface dataset: 👉 [LIBERO-Pro Dataset](https://huggingface.co/datasets/zhouxueyang/LIBERO-Pro)
+
+### 2️⃣ Move Files into LIBERO-Pro Structure
+Move the downloaded files into the correct LIBERO-Pro directory structure:
+```
+mv libero_data/bddl_files/* libero/libero/bddl_files/
+mv libero_data/init_files/* libero/libero/init_files/
+```
+
+## 3️⃣ Configure Evaluation Settings
+All evaluation parameters can be set in the file:
+```
+evaluation_config.yaml
+```
+
+In the this evaluation mode, only one perturbation type can be active at a time. To specify the desired perturbation, modify the corresponding field in the config file:
+```
+use_swap: false
+use_object: false
+use_language: false
+use_task: true
+```
+
+## Custom Evaluation (Optional)
+To specify combined-type generalization evaluation, modify `evaluation_config.yaml` in your project directory.  
 
 | Parameter | Function |
 | ----------------- | -------------------------------------------------------------------------------------- |
